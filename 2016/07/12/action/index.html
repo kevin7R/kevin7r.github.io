@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Kevin" />
+
+
+
+<meta name="description" content="怎样快速的学习Spring in action！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring in action">
+<meta property="og:url" content="http://kevin7R.github.io/2016/07/12/action/index.html">
+<meta property="og:site_name" content="SimpleProgromerFans">
+<meta property="og:description" content="怎样快速的学习Spring in action！">
+<meta property="og:updated_time" content="2016-07-15T13:47:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring in action">
+<meta name="twitter:description" content="怎样快速的学习Spring in action！">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="SimpleProgromerFans" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Spring in action | SimpleProgromerFans</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Kevin</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Simple Programmer Fans</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:chenmeng.1886@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://simpleprogrammer.com/">SimpleProgrammer</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">hope is not a strategy in software development</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Kevin</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Kevin</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Simple Programmer Fans</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:chenmeng.1886@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-action" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/12/action/" class="article-date">
+      <time datetime="2016-07-12T11:55:40.000Z" itemprop="datePublished">2016-07-12</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring in action
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/程序开发/">程序开发</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>怎样快速的学习Spring in action！<a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><p>Spring的出现就是为使Java EE应用开发更加简单。整个Spring主要是围绕下面4点来简化开发的的：</p>
+<ul>
+<li>基于POJO的轻量级和最小侵入性编程</li>
+<li>通过依赖注入和面向接口实现松耦合</li>
+<li>通过切面和惯例进行声明式编程</li>
+<li>通过模版减少样板式代码</li>
+</ul>
+<p>基本上，Spring做的所有的事都可以回溯到这上面来。接下来我会举例来为大家说明。</p>
+<h3 id="POJO"><a href="#POJO" class="headerlink" title="POJO"></a>POJO</h3><p>因为Spring鼓励使用POJO，所以它是一种轻量级和最小侵入性编程。具体原因<br>详细了解POJO后，你就会明白，这里建议理清<a href="http://baike.baidu.com/link?url=kaY-YGYVeBrY4WukgGAGn47-ngGlahNAkDn_6-6RBaXMNX8YIJadvlaiNZpHSlwt3eq55f4K_0KXxk1aoF5Jy_#3" target="_blank" rel="external">POJO和JavaBean的区别</a>。<br>POJO（Plain Old Java Object）就像他的名字一样，他就是一个最普通的java对象。那么为什么说基于Spring的应用是轻量级和最小侵入性的呢？</p>
+<ul>
+<li>Spring不会强迫你实现Spring规范的接口或继承Spring规范的类，从而使你根本看不出来声明的类到底有没有使用Spring。</li>
+<li>Spring可以通过DI来装载POJO</li>
+</ul>
+<h3 id="代码中的DI"><a href="#代码中的DI" class="headerlink" title="代码中的DI"></a>代码中的DI</h3><p>DI就是依赖注入，AOP就是面向接口的编程。在这里不做过多介绍，下面将通过一个例子来具体说明。</p>
+<pre><code>public class DamselRescuingKnight
+{
+
+    private RescueDamselQuest quest;
+
+    public DamselRescuingKnight() 
+    {
+        this.quest = new RescueDamselQuest();
+    }
+
+    public void embarkOnQuest()
+    {
+        quest.embark();
+    }
+}
+
+
+public class RescueDamselQuest
+{
+
+    public void embark()
+    {
+        System.out.println(&quot;embark on the quest of Rescuing Damsel&quot;);
+    }
+}
+</code></pre><p>看到你各类你会感觉很不符合规范，那么哪里不符合规范呢？</p>
+<h4 id="问题一："><a href="#问题一：" class="headerlink" title="问题一："></a>问题一：</h4><p>这里有两个类DamselRescuingKnight和RescueDamselQuest，看到这些我们会想：如果我要使用DamselRescuingKnight，我就得想初始化一个RescueDamselQuest对象，并赋值给DamselRescuingKnight中的quest。这两个类联系也太紧密了，这就是我们所说的强藕连（tightly coupling）。这样的类是根本没法测试。一般情况下，单元测试基本不涉及类之间方法的操作调用。而这里若对embarkOnQuest方法进行测试，就必须要调用embark方法。那么怎么解决这个问题呢？ 很简单，提取一个接口就可以。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class DamselRescuingKnight </div><div class="line">&#123;</div><div class="line"></div><div class="line">   	private Quest quest;</div><div class="line"></div><div class="line">   	public DamselRescuingKnight(Quest quest) </div><div class="line">   	&#123;</div><div class="line">   		this.quest = quest;</div><div class="line">   	&#125;</div><div class="line"></div><div class="line">   	public void embarkOnQuest()</div><div class="line">   	&#123;</div><div class="line">   		quest.embark();</div><div class="line">   	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class RescueDamselQuest implements Quest</div><div class="line">&#123;</div><div class="line">   </div><div class="line">   	public void embark()</div><div class="line">   	&#123;</div><div class="line">   		System.out.println(&quot;embark on the quest of Rescuing Damsel&quot;);</div><div class="line">   	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public interface Quest </div><div class="line">&#123;</div><div class="line">	void embark();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+这里我们看到没有创建自己的quest，它是通过构造函数来给quest赋值的,其实这也是DI的一种：通过构造函数来注入。另外这里的quest是接口，你可以声明任何类来继承该接口来给这里的quest赋值，从而也就实现了解藕（loose coupling）。那么我们这里怎么来写单元测试呢？只需mock一个继承Quest接口就可以了。
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class MockQuest implements Quest </div><div class="line">&#123;</div><div class="line">   	public void embark() </div><div class="line">   	&#123;</div><div class="line">   		System.out.println(&quot;mock quest&quot;);</div><div class="line">   	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+
+单元测试：
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@RunWith(JMockit.class)</div><div class="line">public class DamselRescuingKnightTest </div><div class="line">&#123;</div><div class="line"> 	@Test</div><div class="line">   	public void embarkOnQuest()</div><div class="line">   	&#123;</div><div class="line">		BraveKnight knight = new BraveKnight(new MockQuest());</div><div class="line">		knight.embarkOnQuest();</div><div class="line">   	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+输出结果：
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mock quest</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure>
+
+通过这样来做呢，我们就可以把更多不同的任务给这个DamselRescuingKnight了，比如：RescueDamselQuest, SlayDragonQuest, MakeRoundTableRounderQuest等。
+</code></pre><h4 id="问题二："><a href="#问题二：" class="headerlink" title="问题二："></a>问题二：</h4><p>这里是不是有点别扭，从业务层面分析的话，个人觉得我们的knight可能不只DamselRescuingKnight这一种knight的，如果我们可能会有多种knight就可以了，那我们该怎么做呢？这里我们只要提取knight接口，之后，特定的night只要继承这个接口就可以了。所以这里我们还需要声明一个接口：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public interface Knight </div><div class="line">&#123;</div><div class="line">	void embarkOnQuest();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><p>这个例子，通过使用构造函数的依赖注入和面向接口的方式来实现了松耦合。这里的依赖注入是通过代码来实现的，那么我们怎么通过Sring来实现呢？</p>
+<h3 id="Spring-实现DI"><a href="#Spring-实现DI" class="headerlink" title="Spring 实现DI"></a>Spring 实现DI</h3><p>Spring提供了3种方法来实现DI，也就是装载： 基于注解的，基于java代码的和基于xml的。在这部分我们先简单介绍基于xml的装载方式。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</div><div class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</div><div class="line">       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</div><div class="line">       xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;</div><div class="line">       xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd&quot;&gt;</div><div class="line"></div><div class="line">    &lt;bean id=&quot;knight&quot; class=&quot;model.knights.BraveKnight&quot;&gt;</div><div class="line">        &lt;constructor-arg ref=&quot;quest&quot; /&gt;</div><div class="line">    &lt;/bean&gt;</div><div class="line"></div><div class="line">    &lt;bean id=&quot;quest&quot; class=&quot;model.quest.SlayDragonQuest&quot;&gt;</div><div class="line">        &lt;constructor-arg value=&quot;#&#123;T(System).out&#125;&quot;/&gt;</div><div class="line">    &lt;/bean&gt;</div><div class="line">    </div><div class="line">&lt;/beans&gt;</div></pre></td></tr></table></figure>
+</code></pre><p>这里个配置文件主要做了两件事：</p>
+<ol>
+<li>在Spring容器中，声明了两个bean。</li>
+<li>在Spring中，通过装载类的变量。</li>
+</ol>
+<p>下面我们通过一段代码来加载这个xml文件，并执行相应的方法。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">public class KnightMain </div><div class="line">&#123;</div><div class="line">   	public static void main(String[] args) </div><div class="line">   	&#123;</div><div class="line">       	ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(&quot;knights.xml&quot;);</div><div class="line">       	Knight knight =  context.getBean(&quot;knight&quot;,Knight.class);</div><div class="line">       	knight.embarkOnQuest();</div><div class="line"></div><div class="line">   	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><p>运行输出结果为</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">embarking on quest to slay dragon </div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure>
+</code></pre><h3 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h3><p>什么是AOP呢？AOP就是Aspect Oriented Programming，貌似是废话。我们先不要去管AOP的定义，不是有句话是说：讲道理不如举例子。这里我们就先讲一个例子。</p>
+<p>一个模块除了要执行他的核心代码之外，可能还要执行一些辅助性的代码：比如日志打印，安全性校验，检查事物状态等。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">log/security/transaction  module</div><div class="line"></div><div class="line">core module</div><div class="line"></div><div class="line">log/security/transaction  module</div></pre></td></tr></table></figure>
+</code></pre><p>如果想在系统多处执行这个核心功能，我们就不得不也在多个位置加入相应的辅助性代码。这一方面造成了许多重复代码的出现，一方面更不利于我们维护，修改该模块代码。（这里我们就不能把这些模块原子化吗？在有的时候辅助性的代码是和类相关的，如日志代码。在这种情况下，这些模块是不可能被原子化）</p>
+<p>为了解决这样的问题，AOP就应运而生了。AOP就有这一个作用，那就是使核心代码与其他代码分隔开。我们为上面的knight配备一个Minstrel，使得每次knight在执行任务的时候，minstrel都会为他咏唱一下。</p>
+<p>Minstrel的代码如下：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class Minstrel </div><div class="line">&#123;</div><div class="line">   	private PrintStream stream;</div><div class="line"></div><div class="line">   	public Minstrel(PrintStream stream) </div><div class="line">   	&#123;</div><div class="line">       	this.stream = stream;</div><div class="line">   	&#125;</div><div class="line"></div><div class="line">   	public void singBeforeQuest()</div><div class="line">   	&#123;</div><div class="line">       	stream.println(&quot;Fa la la, the knight is so brave!&quot;);</div><div class="line">   	&#125;</div><div class="line"></div><div class="line">   	public void singAfterQuest()</div><div class="line">   	&#123;</div><div class="line">       	stream.println(&quot;Tee hee hee, the brave knight &quot; +</div><div class="line">               &quot;did embark on a quest!&quot;);</div><div class="line"> 		&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><p>下面通过AOP来监测embarkOnQuest 方法，使得knight每一次该方法调用时，Minstrel先为他咏唱一次。就是在刚刚的xml文件中加入</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;aop:config&gt;</div><div class="line">       &lt;!--切面对象--&gt;</div><div class="line">       &lt;aop:aspect ref=&quot;minstrel&quot;&gt;</div><div class="line">           &lt;!--切点--&gt;</div><div class="line">           &lt;aop:pointcut id=&quot;embark&quot;</div><div class="line">                         expression=&quot;execution(* *.embarkOnQuest(..))&quot;/&gt;</div><div class="line">           &lt;!--method必须是切面对象中的方法，切点前执行的方法--&gt;</div><div class="line">           &lt;aop:before pointcut-ref=&quot;embark&quot;</div><div class="line">                       method=&quot;singBeforeQuest&quot;/&gt;</div><div class="line">           &lt;!--切点后执行的方法--&gt;</div><div class="line">           &lt;aop:after pointcut-ref=&quot;embark&quot;</div><div class="line">                      method=&quot;singAfterQuest&quot;/&gt;</div><div class="line">       &lt;/aop:aspect&gt;</div><div class="line">   &lt;/aop:config&gt;</div></pre></td></tr></table></figure>
+</code></pre><p>然后运行KnightMain，结果为：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   Fa la la, the knight is so brave!</div><div class="line">embarking on quest to slay dragon </div><div class="line">Tee hee hee, the brave knight did embark on a quest!</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure>
+</code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>从上面介绍POJO，DI，AOP，使用接口我们可以看出，Spring和配合Spring来使用的一些技术，都是为了使我们的程序在代码层面显得更简练，在逻辑层面更清晰，在系统层面更加的模块化。这些基本上就是以Spring框架来搭建的系统的最可取的地方。</p>
+<h3 id="通过模版减少样板式代码"><a href="#通过模版减少样板式代码" class="headerlink" title="通过模版减少样板式代码"></a>通过模版减少样板式代码</h3><p>关于这一部分，还没有找到更加合适的例子来讲解，所以这块先保留。如果大家确实想了解的话，可以直接查看Spring in action的1.1.4<br>Eliminating boilerplate code with templates的这个章节。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/07/12/action/">Spring in action</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Kevin</a></p>
+        <p><span>发布时间:</span>2016-07-12, 19:55:40</p>
+        <p><span>最后更新:</span>2016-07-15, 21:47:31</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/07/12/action/" title="Spring in action">http://kevin7R.github.io/2016/07/12/action/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://kevin7R.github.io/2016/07/12/action/　　作者: Kevin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/07/10/hope/">
+                    Hope Is Not a Strategy in Software Development
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring"><span class="toc-number">1.</span> <span class="toc-text">Spring</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POJO"><span class="toc-number">1.1.</span> <span class="toc-text">POJO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码中的DI"><span class="toc-number">1.2.</span> <span class="toc-text">代码中的DI</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题一："><span class="toc-number">1.2.1.</span> <span class="toc-text">问题一：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#问题二："><span class="toc-number">1.2.2.</span> <span class="toc-text">问题二：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-实现DI"><span class="toc-number">1.3.</span> <span class="toc-text">Spring 实现DI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AOP"><span class="toc-number">1.4.</span> <span class="toc-text">AOP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.5.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过模版减少样板式代码"><span class="toc-number">1.6.</span> <span class="toc-text">通过模版减少样板式代码</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Spring in action　| SimpleProgromerFans　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2106057';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/07/10/hope/" title="下一篇: Hope Is Not a Strategy in Software Development">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/action/">Spring in action</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/10/hope/">Hope Is Not a Strategy in Software Development</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/hello-world/">Simple Programer Fans</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Kevin
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
