@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://kevin7R.github.io/2016/07/12/action/index.html">
 <meta property="og:site_name" content="SimpleProgromerFans">
 <meta property="og:description" content="快速的学习Spring in action ！！！">
-<meta property="og:updated_time" content="2016-07-15T14:01:05.000Z">
+<meta property="og:updated_time" content="2016-07-15T14:06:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring in action">
 <meta name="twitter:description" content="快速的学习Spring in action ！！！">
@@ -354,22 +354,14 @@ public class RescueDamselQuest
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class RescueDamselQuest implements Quest</div><div class="line">&#123;</div><div class="line">   </div><div class="line">   	public void embark()</div><div class="line">   	&#123;</div><div class="line">   		System.out.println(&quot;embark on the quest of Rescuing Damsel&quot;);</div><div class="line">   	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public interface Quest </div><div class="line">&#123;</div><div class="line">	void embark();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-这里我们看到没有创建自己的quest，它是通过构造函数来给quest赋值的,其实这也是DI的一种：通过构造函数来注入。另外这里的quest是接口，你可以声明任何类来继承该接口来给这里的quest赋值，从而也就实现了解藕（loose coupling）。那么我们这里怎么来写单元测试呢？只需mock一个继承Quest接口就可以了。
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class MockQuest implements Quest </div><div class="line">&#123;</div><div class="line">   	public void embark() </div><div class="line">   	&#123;</div><div class="line">   		System.out.println(&quot;mock quest&quot;);</div><div class="line">   	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-
-单元测试：
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@RunWith(JMockit.class)</div><div class="line">public class DamselRescuingKnightTest </div><div class="line">&#123;</div><div class="line"> 	@Test</div><div class="line">   	public void embarkOnQuest()</div><div class="line">   	&#123;</div><div class="line">		BraveKnight knight = new BraveKnight(new MockQuest());</div><div class="line">		knight.embarkOnQuest();</div><div class="line">   	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-输出结果：
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mock quest</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure>
-
-通过这样来做呢，我们就可以把更多不同的任务给这个DamselRescuingKnight了，比如：RescueDamselQuest, SlayDragonQuest, MakeRoundTableRounderQuest等。
-</code></pre><h4 id="问题二："><a href="#问题二：" class="headerlink" title="问题二："></a>问题二：</h4><p>这里是不是有点别扭，从业务层面分析的话，个人觉得我们的knight可能不只DamselRescuingKnight这一种knight的，如果我们可能会有多种knight就可以了，那我们该怎么做呢？这里我们只要提取knight接口，之后，特定的night只要继承这个接口就可以了。所以这里我们还需要声明一个接口：</p>
+</code></pre><p>这里我们看到没有创建自己的quest，它是通过构造函数来给quest赋值的,其实这也是DI的一种：通过构造函数来注入。另外这里的quest是接口，你可以声明任何类来继承该接口来给这里的quest赋值，从而也就实现了解藕（loose coupling）。那么我们这里怎么来写单元测试呢？只需mock一个继承Quest接口就可以了。</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class MockQuest implements Quest </div><div class="line">&#123;</div><div class="line">   	public void embark() </div><div class="line">   	&#123;</div><div class="line">   		System.out.println(&quot;mock quest&quot;);</div><div class="line">   	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><p>单元测试：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@RunWith(JMockit.class)</div><div class="line">public class DamselRescuingKnightTest </div><div class="line">&#123;</div><div class="line"> 	@Test</div><div class="line">   	public void embarkOnQuest()</div><div class="line">   	&#123;</div><div class="line">		BraveKnight knight = new BraveKnight(new MockQuest());</div><div class="line">		knight.embarkOnQuest();</div><div class="line">   	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</code></pre><p>输出结果：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mock quest</div><div class="line"></div><div class="line">Process finished with exit code 0</div></pre></td></tr></table></figure>
+</code></pre><p>通过这样来做呢，我们就可以把更多不同的任务给这个DamselRescuingKnight了，比如：RescueDamselQuest, SlayDragonQuest, MakeRoundTableRounderQuest等。</p>
+<h4 id="问题二："><a href="#问题二：" class="headerlink" title="问题二："></a>问题二：</h4><p>这里是不是有点别扭，从业务层面分析的话，个人觉得我们的knight可能不只DamselRescuingKnight这一种knight的，如果我们可能会有多种knight就可以了，那我们该怎么做呢？这里我们只要提取knight接口，之后，特定的night只要继承这个接口就可以了。所以这里我们还需要声明一个接口：</p>
 <pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public interface Knight </div><div class="line">&#123;</div><div class="line">	void embarkOnQuest();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </code></pre><p>这个例子，通过使用构造函数的依赖注入和面向接口的方式来实现了松耦合。这里的依赖注入是通过代码来实现的，那么我们怎么通过Sring来实现呢？</p>
 <h3 id="Spring-实现DI"><a href="#Spring-实现DI" class="headerlink" title="Spring 实现DI"></a>Spring 实现DI</h3><p>Spring提供了3种方法来实现DI，也就是装载： 基于注解的，基于java代码的和基于xml的。在这部分我们先简单介绍基于xml的装载方式。</p>
@@ -407,7 +399,7 @@ public class RescueDamselQuest
         <p><span>Title:</span><a href="/2016/07/12/action/">Spring in action</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Kevin</a></p>
         <p><span>Created:</span>2016-07-12, 19:55:40</p>
-        <p><span>Updated:</span>2016-07-15, 22:01:05</p>
+        <p><span>Updated:</span>2016-07-15, 22:06:57</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2016/07/12/action/" title="Spring in action">http://kevin7R.github.io/2016/07/12/action/</a>
             <span class="copy-path" data-clipboard-text="From http://kevin7R.github.io/2016/07/12/action/　　By Kevin" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
