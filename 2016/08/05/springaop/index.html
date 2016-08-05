@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Kevin" />
+
+
+
+<meta name="description" content="AOP: 面向切面的编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AOP">
+<meta property="og:url" content="http://kevin7R.github.io/2016/08/05/springaop/index.html">
+<meta property="og:site_name" content="SimpleProgromerFans">
+<meta property="og:description" content="AOP: 面向切面的编程">
+<meta property="og:updated_time" content="2016-08-05T12:41:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AOP">
+<meta name="twitter:description" content="AOP: 面向切面的编程">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="SimpleProgromerFans" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>AOP | SimpleProgromerFans</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Kevin</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Simple Programmer Fans</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>Menu</li>
+                        <li>Tags</li>
+                        
+                        <li>Friends</li>
+                        
+                        
+                        <li>About Me</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:chenmeng.1886@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://simpleprogrammer.com/">SimpleProgrammer</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">hope is not a strategy in software development</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Kevin</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Kevin</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Simple Programmer Fans</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:chenmeng.1886@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="Tags" friends="Friends" about="About Me"/>
+</nav>
+      <div class="body-wrap"><article id="post-springaop" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/05/springaop/" class="article-date">
+      <time datetime="2016-08-05T02:35:11.000Z" itemprop="datePublished">2016-08-05</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AOP
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/程序开发/">程序开发</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |="" 首页摘要=""><br>AOP: 面向切面的编程 <a id="more"></a></excerpt></p>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<h2 id="AOP是干什么的"><a href="#AOP是干什么的" class="headerlink" title="AOP是干什么的"></a>AOP是干什么的</h2><p>所谓AOP(aspect-oriented programming)，就是面向切面的编程。那该怎么理解呢？在网上或者书上，我们肯定都遇到过“美女，骑士，与歌唱家”、“收电费”等例子。其实这些想说明的就是：我们的系统肯定有自身固有的必须要做的事，同时也会去处理一些杂事，我们不希望系统在做自己的事的时候，还要去分心去处理其它的杂事，或者仅仅因为这些杂事出错了，而导致相应的自己必须要做的事也处理不下去。而通过AOP，我们就可以把这些杂事委托给别人来做。</p>
+<p>对于一个系统来说，这样做有两个好处：</p>
+<ul>
+<li>模块化主要功能和辅助功能</li>
+<li>更专心的关注核心功能</li>
+</ul>
+<p>OK！下面就是AOP的干货了。</p>
+<h3 id="AOP的关键术语"><a href="#AOP的关键术语" class="headerlink" title="AOP的关键术语"></a>AOP的关键术语</h3><p> <strong>advice</strong></p>
+<p>在AOP里面，advice规定了切面要做的事情，以及何时去做，即规定了what和when。在advice中经常会用到规定when的一些注解，如：@Before,@After,@AfterReturning,@AfterThrowing,@Around</p>
+<p> <strong>joinpoint</strong></p>
+<p>也就是在你的系统中，可以植入advice的地方。可能是访问一个方法的地方，一个异常抛出的地方或者是一个变量改变的地方，甚至可以是你使用AOP加入新方法的地方。</p>
+<p> <strong>pointcuts</strong></p>
+<p>pointcuts的作用就是规定joinpoint的范围。就是规定advice可以在哪些joinpoint上运行。如果advice规定的是what和when的话，那pointcuts规定的就是where。</p>
+<p> <strong>aspect</strong></p>
+<p>一个aspect就是advice和pointcuts的合成，也就是我们所说的切面，他知道所有要做的东西：what,when,where.</p>
+<p> <strong>INTRODUCTIONS</strong></p>
+<p>introduction的作用就是可以在现有的类上增加方法和变量。</p>
+<p> <strong>weaving</strong></p>
+<p>所谓织入，就是把aspect和目标类绑定的过程。这里织入一般发生在下面几种情况下：</p>
+<ul>
+<li>编译时，也就是在编译的时候，把aspect织入到目标类中。AspectJ的织入编译器会通过这种方式来织入aspect。</li>
+<li>类加载时，也就是在类加载到JVM之前，把aspect织入到目标类中。一般这需要一个特定的类加载器。AspectJ5 的LTW（loading-time weaving）支持这种方式。</li>
+<li>运行时，也就是在程序运行的时候织入aspect，在织入的时候，AOP的容器会生成一个代理类委托给目标对象，这就是Spring AOP的织入方式。</li>
+</ul>
+<h3 id="AOP实现的几种方式"><a href="#AOP实现的几种方式" class="headerlink" title="AOP实现的几种方式"></a>AOP实现的几种方式</h3><ul>
+<li>经典的基于代理的Spring AOP</li>
+<li>纯POJO的aspects</li>
+<li>基于@AspectJ注解的aspects</li>
+<li>直接使用AspectJ的aspect</li>
+</ul>
+<p>简单介绍一下这几种方式哈，不细说。前面三种都是基于Spring AOP来实现的，以为Spring AOP是基于动态代理来实现的，因此，也仅限于来监听方法。<br>第一种现在来说已经很少见了，因为它显得过于笨重、复杂了。第二种只能必须使用xml配置文件来把POJO变成aspect。第三种也就是披上了一层类似于AspectJ注解的外壳，其核心还是基于java的动态代理来实现的。第四种的话，功能最强大，也比较简单。它可以提供对于构造函数，变量的一些监听。这个在最近的博客中，就不过多的涉及了，不过这系列博客做完后，我打算再去专门针对AspectJ来出一系列的博客。当然这里可以推荐给大家一本书AspectJ in Action。里面讲的非常详细。</p>
+<h2 id="基于注解实现的AOP"><a href="#基于注解实现的AOP" class="headerlink" title="基于注解实现的AOP"></a>基于注解实现的AOP</h2><p>终于啰嗦完了，最重要的还是理解它是在什么情况下使用的。至于AOP的实现相对比较简单。因为我们这一系列讲的是Spring，这里就只给大家介绍一下Spring AOP的小例子。</p>
+<p>这里虽然介绍的是Spring AOP，但是使用@AspectJ注解的话，形式就和使用AspectJ一样了，二者的区别在于核心实现。</p>
+<h3 id="制作-pointcuts"><a href="#制作-pointcuts" class="headerlink" title="制作 pointcuts"></a>制作 pointcuts</h3><p>这里比较重要的表达式是execution()。先看一个小例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">execution(* concert.Performance.perform(..))</div></pre></td></tr></table></figure>
+<p>从头到尾，一点点剖析：”*”代表返回类型；concert.Performance代表方法所在的类；perform代表join points所在的方法。里面的”(..)”表示方法内的参数可以是任何参数。</p>
+<h3 id="制作aspects"><a href="#制作aspects" class="headerlink" title="制作aspects"></a>制作aspects</h3><p>首先先声明一个接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public interface Performance &#123;</div><div class="line"></div><div class="line">    void perform();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后再根据这个接口来制作aspects。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">@Aspect</div><div class="line">@Component</div><div class="line">public class Audience &#123;</div><div class="line"></div><div class="line">    @Pointcut(&quot;execution(* concert.Performance.*())&quot;)</div><div class="line">    public void performance() &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Before(&quot;performance()&quot;)</div><div class="line">    public void silenceCellPhone() &#123;</div><div class="line">        System.out.println(&quot;Silencing cell phones&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Before(&quot;performance()&quot;)</div><div class="line">    public void takeSeats() &#123;</div><div class="line">        System.out.println(&quot;Taking seats&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @AfterReturning(&quot;performance()&quot;)</div><div class="line">    public void applause() &#123;</div><div class="line">        System.out.println(&quot;CLAP CLAP CLAP&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @AfterThrowing(&quot;performance()&quot;)</div><div class="line">    public void demandRefund() &#123;</div><div class="line">        System.out.println(&quot;Demanding a refund&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中@Pointcut注解来规定哪些方法可以被监听。其余注解指示当该方法被监听到时，所要执行的动作。有心的小伙伴已经看出来了，我们为什么还要用<br>@Component来注解Audience呢？因为这里我们要在Spring容器中创建这个bean，并把它代理给目标类。那到这里可以有运行结果了吗？不可以，因为你使用没有什么命令来讲这个aspect代理给目标类啊！而这就是@EnableAspectJAutoProxy这个注解的作用了。这个注解需要添加到配置文件中，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@Configuration</div><div class="line">@ComponentScan</div><div class="line">@EnableAspectJAutoProxy</div><div class="line">public class ConcertConfig &#123;</div><div class="line"></div><div class="line">    @Bean</div><div class="line">    public EncoreableIntroducer encoreableIntroducer() &#123;</div><div class="line">        return new EncoreableIntroducer();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后，写一下测试用例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@RunWith(SpringJUnit4ClassRunner.class)</div><div class="line">@ContextConfiguration(classes = ConcertConfig.class)</div><div class="line">public class AudienceTest &#123;</div><div class="line"></div><div class="line">    @Autowired</div><div class="line">    private Performance performance;</div><div class="line"></div><div class="line"></div><div class="line">    @Test</div><div class="line">    public void testAudience() &#123;</div><div class="line">        performance.perform();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最后输出结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Silencing cell phones</div><div class="line">Taking seats</div><div class="line">music</div><div class="line">CLAP CLAP CLAP</div></pre></td></tr></table></figure>
+<p>ok！这就是基于AOP实现的最简单的一个小例子，接下来介绍一些小功能。</p>
+<h4 id="Around"><a href="#Around" class="headerlink" title="@Around"></a>@Around</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@Around(&quot;performance()&quot;)</div><div class="line">public void watchPerformance(ProceedingJoinPoint joinPoint) throws Throwable &#123;</div><div class="line">    System.out.println(&quot;before watchPerformance&quot;);</div><div class="line">    joinPoint.proceed();</div><div class="line">    System.out.println(&quot;after watchPerformance&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>基于上面的例子分析，这里可以提供在我们的方法运行前和运行后所要执行的操作，那@Around注解的功能就是使用一个注解来完成@Before和@After两个注解的功能。</p>
+<p>上面的四个注解用@Around替换后，我们在运行测试程序就可以得到下面的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">before watchPerformance</div><div class="line">music</div><div class="line">after watchPerformance</div></pre></td></tr></table></figure>
+<p>这里需要注意的是@Around注解的方法中，需要一个参数，即ProceedingJoinPoint，想要完成上面的功能，务必需要调用proceed()方法。</p>
+<h4 id="处理带参数的advice"><a href="#处理带参数的advice" class="headerlink" title="处理带参数的advice"></a>处理带参数的advice</h4><p>这里需要用到一个表达式 args()，这个表达式起的作用就是，限制该表达式中的参数与join-ponit方法中的参数类型一致。如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">@Aspect</div><div class="line">public class TrackCounter &#123;</div><div class="line"></div><div class="line">    private Map&lt;Integer, Integer&gt; trackCounts = new HashMap&lt;Integer, Integer&gt;();</div><div class="line"></div><div class="line">    @Pointcut(&quot;execution(* soundsystem.CompactDisc.playTrack(int)) &quot; + &quot;&amp;&amp; args(trackNumber)&quot;)</div><div class="line">    public void trackPlayed(int trackNumber) &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Before(&quot;trackPlayed(trackNumber)&quot;)</div><div class="line">    public void countTrack(int trackNumber) &#123;</div><div class="line">        int currentCount = getPlayCount(trackNumber);</div><div class="line">        trackCounts.put(trackNumber, currentCount + 1);</div><div class="line"></div><div class="line">        System.out.println(trackCounts.get(trackNumber));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public int getPlayCount(int trackNumber) &#123;</div><div class="line">        return trackCounts.containsKey(trackNumber) ? trackCounts.get(trackNumber) : 0;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里所讲的例子，就是<a href="http://simpleprogrammerfans.com/2016/07/27/action2/#more" target="_blank" rel="external">之前博客中</a>使用过的BlankDisc类。这里在实现接口中加了一个方法：</p>
+<p>CompactDisc接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">package soundsystem;</div><div class="line"></div><div class="line">public interface CompactDisc &#123;</div><div class="line">    void play();</div><div class="line">    void playTrack(int trackNumber);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>另外BlankDisc类也实现了这个方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">public void playTrack(int trackNumber) &#123;</div><div class="line">        if (trackNumber &lt; tracks.size()) &#123;</div><div class="line">            System.out.println(&quot;-Track: &quot; + tracks.get(trackNumber));</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>下面是我写的测试类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@RunWith(SpringJUnit4ClassRunner.class)</div><div class="line">@ContextConfiguration(classes = SoundSystemConfig.class)</div><div class="line">public class TrackerCounterTest &#123;</div><div class="line"></div><div class="line">    @Autowired</div><div class="line">    private CompactDisc compactDisc;</div><div class="line"></div><div class="line">    @Autowired</div><div class="line">    private TrackCounter counter;</div><div class="line"></div><div class="line">    @Test</div><div class="line">    public void testPlayTrack() &#123;</div><div class="line">        compactDisc.playTrack(1);</div><div class="line">        compactDisc.playTrack(2);</div><div class="line">        compactDisc.playTrack(3);</div><div class="line">        compactDisc.playTrack(3);</div><div class="line">        compactDisc.playTrack(3);</div><div class="line">        compactDisc.playTrack(3);</div><div class="line">        compactDisc.playTrack(7);</div><div class="line">        compactDisc.playTrack(7);</div><div class="line"></div><div class="line">        assertEquals(1,  counter.getPlayCount(1));</div><div class="line">        assertEquals(1,  counter.getPlayCount(2));</div><div class="line">        assertEquals(4,  counter.getPlayCount(3));</div><div class="line">        assertEquals(0,  counter.getPlayCount(4));</div><div class="line">        assertEquals(0,  counter.getPlayCount(5));</div><div class="line">        assertEquals(0,  counter.getPlayCount(6));</div><div class="line">        assertEquals(2,  counter.getPlayCount(7));</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个测试类的作用就是测试BlankDisc播放同一首歌曲的次数是否统计正确。<br>测试结果完全ok。</p>
+<p>这里就基本全部介绍完了AOP。下面再介绍一下introductions的功能。</p>
+<h4 id="用注解实现introductions"><a href="#用注解实现introductions" class="headerlink" title="用注解实现introductions"></a>用注解实现introductions</h4><p>在这里introduction不是介绍说明，而是引入的意思。其实在Spring AOP里面，它实现的功能就是给现有的类或者对象引入方法。下面看是如何实现的：</p>
+<p>首先我们声明一个接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface Encoreable &#123;</div><div class="line">    void performEncore();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后声明一个类来实现这个接口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@Component</div><div class="line">public class MusicPerformance implements Performance &#123;</div><div class="line">    public void perform() &#123;</div><div class="line">        System.out.println(&quot;music&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接下来，我们就做这个引入的实现了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@Aspect</div><div class="line">public class EncoreableIntroducer &#123;</div><div class="line">    @DeclareParents(value = &quot;concert.Performance+&quot;,defaultImpl = DefaultEncoreable.class)</div><div class="line">    public static Encoreable encoreable;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中value这里指的是目标类或者对象，defaultImpl指要加入的方法的实现类，静态变量指要加入的方法。</p>
+<p>然后编写测试类来实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">@RunWith(SpringJUnit4ClassRunner.class)</div><div class="line">@ContextConfiguration(classes = ConcertConfig.class)</div><div class="line">public class AudienceTest &#123;</div><div class="line"></div><div class="line">    @Autowired</div><div class="line">    private Performance performance;</div><div class="line"></div><div class="line"></div><div class="line">    @Test</div><div class="line">    public void testAudience() &#123;</div><div class="line"></div><div class="line">        Encoreable encoreable = (Encoreable) performance;</div><div class="line"></div><div class="line">        encoreable.performEncore();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>相应的测试结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">play again!</div></pre></td></tr></table></figure>
+<p>OK！完全没问题了，这样的话，我们就把AOP的内容全部讲完了，这里这些例子说实话其实都没什么意义，只是想让大家对AOP有一个实质的了解，AOP的实现并不难，难的是AOP的理念不好理解。</p>
+<p>到这里Spring核心部分的内容就全部给大家介绍完了，下周开始给大家讲解真正的Spring开发：Spring on the web.</p>
+<h2 id="AspectJ-aspect"><a href="#AspectJ-aspect" class="headerlink" title="AspectJ aspect"></a>AspectJ aspect</h2><p>关于真正的AspectJ，在我写完Spring这篇博客后，我会详细给大家介绍一下，当然如果有迫切需要的小伙伴，可以先看一下AspectJ in action这本书，这里面讲的很详细，也有好多实例。</p>
+<h2 id="代码下载"><a href="#代码下载" class="headerlink" title="代码下载"></a>代码下载</h2><p><a href="https://github.com/kevin7R/spring.github.io/tree/master/aoptest" target="_blank" rel="external">https://github.com/kevin7R/spring.github.io/tree/master/aoptest</a></p>
+</the>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2016/08/05/springaop/">AOP</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">Kevin</a></p>
+        <p><span>Created:</span>2016-08-05, 10:35:11</p>
+        <p><span>Updated:</span>2016-08-05, 20:41:10</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2016/08/05/springaop/" title="AOP">http://kevin7R.github.io/2016/08/05/springaop/</a>
+            <span class="copy-path" data-clipboard-text="From http://kevin7R.github.io/2016/08/05/springaop/　　By Kevin" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/08/01/advancewiring/">
+                    bean的高级装配
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AOP是干什么的"><span class="toc-number">1.</span> <span class="toc-text">AOP是干什么的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AOP的关键术语"><span class="toc-number">1.1.</span> <span class="toc-text">AOP的关键术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AOP实现的几种方式"><span class="toc-number">1.2.</span> <span class="toc-text">AOP实现的几种方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于注解实现的AOP"><span class="toc-number">2.</span> <span class="toc-text">基于注解实现的AOP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#制作-pointcuts"><span class="toc-number">2.1.</span> <span class="toc-text">制作 pointcuts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#制作aspects"><span class="toc-number">2.2.</span> <span class="toc-text">制作aspects</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Around"><span class="toc-number">2.2.1.</span> <span class="toc-text">@Around</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#处理带参数的advice"><span class="toc-number">2.2.2.</span> <span class="toc-text">处理带参数的advice</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#用注解实现introductions"><span class="toc-number">2.2.3.</span> <span class="toc-text">用注解实现introductions</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AspectJ-aspect"><span class="toc-number">3.</span> <span class="toc-text">AspectJ aspect</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码下载"><span class="toc-number">4.</span> <span class="toc-text">代码下载</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+
+    <script>
+        yiliaConfig.toc = ["Hide", "Show", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"AOP　| SimpleProgromerFans　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2106057';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/08/01/advancewiring/" title="Next: bean的高级装配">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/05/springaop/">AOP</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/01/advancewiring/">bean的高级装配</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/action2/">Bean的装配</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/22/pomodoro/">Pomodoro</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/uncompleted/">未完成</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/signs/">Hidden Signs That It's Time To Leave Your Job</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/action/">Spring in action</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/10/hope/">Hope Is Not a Strategy in Software Development</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/hello-world/">Simple Programer Fans</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Kevin
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >Site Visitors: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">Page Hits: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
