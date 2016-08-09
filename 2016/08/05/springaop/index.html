@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://kevin7R.github.io/2016/08/05/springaop/index.html">
 <meta property="og:site_name" content="SimpleProgromerFans">
 <meta property="og:description" content="AOP: 面向切面的编程">
-<meta property="og:updated_time" content="2016-08-05T12:41:10.000Z">
+<meta property="og:updated_time" content="2016-08-05T12:44:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AOP">
 <meta name="twitter:description" content="AOP: 面向切面的编程">
@@ -183,7 +183,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wyz/">wyz</a></li></ul>
                     </div>
                 </section>
                 
@@ -316,17 +316,17 @@
 <li>更专心的关注核心功能</li>
 </ul>
 <p>OK！下面就是AOP的干货了。</p>
-<h3 id="AOP的关键术语"><a href="#AOP的关键术语" class="headerlink" title="AOP的关键术语"></a>AOP的关键术语</h3><p> <strong>advice</strong></p>
+<h3 id="AOP的关键术语"><a href="#AOP的关键术语" class="headerlink" title="AOP的关键术语"></a>AOP的关键术语</h3><p> <strong>advice:</strong></p>
 <p>在AOP里面，advice规定了切面要做的事情，以及何时去做，即规定了what和when。在advice中经常会用到规定when的一些注解，如：@Before,@After,@AfterReturning,@AfterThrowing,@Around</p>
-<p> <strong>joinpoint</strong></p>
+<p> <strong>joinpoint:</strong></p>
 <p>也就是在你的系统中，可以植入advice的地方。可能是访问一个方法的地方，一个异常抛出的地方或者是一个变量改变的地方，甚至可以是你使用AOP加入新方法的地方。</p>
-<p> <strong>pointcuts</strong></p>
+<p> <strong>pointcuts:</strong></p>
 <p>pointcuts的作用就是规定joinpoint的范围。就是规定advice可以在哪些joinpoint上运行。如果advice规定的是what和when的话，那pointcuts规定的就是where。</p>
-<p> <strong>aspect</strong></p>
+<p> <strong>aspect:</strong></p>
 <p>一个aspect就是advice和pointcuts的合成，也就是我们所说的切面，他知道所有要做的东西：what,when,where.</p>
-<p> <strong>INTRODUCTIONS</strong></p>
+<p> <strong>INTRODUCTIONS:</strong></p>
 <p>introduction的作用就是可以在现有的类上增加方法和变量。</p>
-<p> <strong>weaving</strong></p>
+<p> <strong>weaving:</strong></p>
 <p>所谓织入，就是把aspect和目标类绑定的过程。这里织入一般发生在下面几种情况下：</p>
 <ul>
 <li>编译时，也就是在编译的时候，把aspect织入到目标类中。AspectJ的织入编译器会通过这种方式来织入aspect。</li>
@@ -399,7 +399,7 @@
         <p><span>Title:</span><a href="/2016/08/05/springaop/">AOP</a></p>
         <p><span>Author:</span><a href="/" title="Back to Homepage">Kevin</a></p>
         <p><span>Created:</span>2016-08-05, 10:35:11</p>
-        <p><span>Updated:</span>2016-08-05, 20:41:10</p>
+        <p><span>Updated:</span>2016-08-05, 20:44:43</p>
         <p>
             <span>Full URL:</span><a class="post-url" href="/2016/08/05/springaop/" title="AOP">http://kevin7R.github.io/2016/08/05/springaop/</a>
             <span class="copy-path" data-clipboard-text="From http://kevin7R.github.io/2016/08/05/springaop/　　By Kevin" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
@@ -413,6 +413,12 @@
 
 
     <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/08/08/swap/">
+                    swap
+                </a>
+            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -499,7 +505,9 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+            <a href="/2016/08/08/swap/" title="Pre: swap">
+                <i class="fa fa-angle-left"></i>
+            </a>
         
 
         <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -511,7 +519,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/05/springaop/">AOP</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/01/advancewiring/">bean的高级装配</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/action2/">Bean的装配</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/22/pomodoro/">Pomodoro</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/uncompleted/">未完成</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/signs/">Hidden Signs That It's Time To Leave Your Job</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/action/">Spring in action</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/10/hope/">Hope Is Not a Strategy in Software Development</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/hello-world/">Simple Programer Fans</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/08/swap/">swap</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/05/springaop/">AOP</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/01/advancewiring/">bean的高级装配</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/27/action2/">Bean的装配</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/22/pomodoro/">Pomodoro</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/20/uncompleted/">未完成</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/signs/">Hidden Signs That It's Time To Leave Your Job</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/action/">Spring in action</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/10/hope/">Hope Is Not a Strategy in Software Development</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/06/hello-world/">Simple Programer Fans</a></li></ul>
 
 
 
